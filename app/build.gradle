@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 // Apply static code analysis configuration
 apply from: './checks.gradle'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.M2mobi'
 
 android {
     compileSdkVersion 29

@@ -73,11 +73,8 @@ final class KeystoreTool {
     static String encryptMessage(@NonNull Context context, @NonNull String plainMessage) throws SecureStorageException {
         try {
             Cipher input;
-            if (VERSION.SDK_INT >= M) {
-                input = Cipher.getInstance(KEY_TRANSFORMATION_ALGORITHM, KEY_CIPHER_MARSHMALLOW_PROVIDER);
-            } else {
-                input = Cipher.getInstance(KEY_TRANSFORMATION_ALGORITHM, KEY_CIPHER_JELLYBEAN_PROVIDER);
-            }
+
+            input = Cipher.getInstance(KEY_TRANSFORMATION_ALGORITHM);
 
             input.init(Cipher.ENCRYPT_MODE, getPublicKey(context));
 
@@ -99,11 +96,9 @@ final class KeystoreTool {
     static String decryptMessage(@NonNull Context context, @NonNull String encryptedMessage) throws SecureStorageException {
         try {
             Cipher output;
-            if (VERSION.SDK_INT >= M) {
-                output = Cipher.getInstance(KEY_TRANSFORMATION_ALGORITHM, KEY_CIPHER_MARSHMALLOW_PROVIDER);
-            } else {
-                output = Cipher.getInstance(KEY_TRANSFORMATION_ALGORITHM, KEY_CIPHER_JELLYBEAN_PROVIDER);
-            }
+
+            output = Cipher.getInstance(KEY_TRANSFORMATION_ALGORITHM);
+
             output.init(Cipher.DECRYPT_MODE, getPrivateKey(context));
 
             CipherInputStream cipherInputStream = new CipherInputStream(
